@@ -19,16 +19,16 @@ public aspect Log {
     }
 
     after(User user): logIn(user) {
-        logAction("Log.txt", "Iniciar sesión", user.getNickname(), user.getPassword());
+        logAction("Log.txt", "Iniciar sesión", user.getNickname());
     }
 
     after(User user): logOut(user) {
-        logAction("Log.txt", "Cerrar sesión", user.getNickname(), user.getPassword());
+        logAction("Log.txt", "Cerrar sesión", user.getNickname());
     }
 
-    private void logAction(String filename, String action, String username, String clave) {
+    private void logAction(String filename, String action, String username) {
 	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
-	            writer.write("Sesion: " + action + " por usuario: [" + username + "] Fecha: " + LocalDateTime.now() + "\n");
+	            writer.write( action + " por usuario: [" + username + "] Fecha: " + LocalDateTime.now() + "\n");
 	
 	        } catch (IOException e) {
 	            e.printStackTrace();
@@ -37,7 +37,7 @@ public aspect Log {
     
     private void logAction2(String filename, String action, String username, String clave) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
-                writer.write("Usuario registrado: " + action + " por usuario: [" + username + "Clave:"+ clave +"] Fecha: " + LocalDateTime.now() + "\n");
+                writer.write( action + " por usuario: [" + username + "], Clave: "+ clave +" Fecha: " + LocalDateTime.now() + "\n");
 
             } catch (IOException e) {
                 e.printStackTrace();
