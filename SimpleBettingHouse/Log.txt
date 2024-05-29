@@ -1,0 +1,2 @@
+Sesion: Iniciar sesión por usuario: [maru] Fecha: 2024-05-29T16:22:23.935440600
+Sesion: Cerrar sesión por usuario: [maru] Fecha: 2024-05-29T16:22:26.574413400
