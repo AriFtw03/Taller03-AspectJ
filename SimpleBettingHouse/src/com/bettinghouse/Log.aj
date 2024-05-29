@@ -6,24 +6,14 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public aspect Log {
+	
 
-	pointcut signUp(User user): execution(* BettingHouse.successfulSignUp(..)) && args(user, ..);
-	   
-    pointcut logIn(User user): execution(* BettingHouse.effectiveLogIn(..)) && args(user);
-   
-    pointcut logOut(User user): execution(* BettingHouse.effectiveLogOut(..)) && args(user);
+	pointcut funciontotal(User user): execution(* BettingHouse.successfulSignUp(..)) && args(user, ..);
 
-    after(User user): signUp(user) {
+	after(User user): funciontotal(user) {
     	logAction2("Register.txt", "Registrar usuario", user.getNickname(), user.getPassword());
-
-    }
-
-    after(User user): logIn(user) {
-        logAction("Log.txt", "Iniciar sesión", user.getNickname());
-    }
-
-    after(User user): logOut(user) {
-        logAction("Log.txt", "Cerrar sesión", user.getNickname());
+    	logAction("Log.txt", "Iniciar sesión", user.getNickname());
+    	logAction("Log.txt", "Cerrar sesión", user.getNickname());
     }
 
     private void logAction(String filename, String action, String username) {
